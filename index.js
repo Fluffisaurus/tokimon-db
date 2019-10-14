@@ -11,12 +11,23 @@ const pool = new Pool({
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.get('/', (req, res) => res.render('pages/index'));
+app.get('/', (req, res) => {
+  var tableQuery = 'SELECT * FROM toki_table';
+  pool.query(tableQuery, (error, result) => {
+    if(error)
+      res.end(error);
+    var results = { 'results': (result) ? result.rows : null};
+    console.log(results);
+    res.render('pages/index', results);
+  });
+
+});
 app.get('/db', async (req, res) => {
     try {
       const client = await pool.connect()
       const result = await client.query('SELECT * FROM toki_table');
       const results = { 'results': (result) ? result.rows : null};
+      console.log(results);
       res.render('pages/db', results );
       client.release();
     } catch (err) {
