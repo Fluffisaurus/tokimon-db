@@ -39,14 +39,30 @@ app.get('/', async (req, res) => {
     }
   });
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
   console.log("processing...");
-  console.log(req.body);
-  
+  var data = req.body
+  // console.log(data);
+
+  // var queryString = `INSERT INTO toki_table VALUES(${data.id}, ${data.name}, ${data.weight}, ${data.height}, ${data.flying}, ${data.fight}, ${data.fire}, ${data.water}, ${data.grass}, ${data.electric}, ${data.ice}, ${data.total}, ${data.trainer})`
+  // console.log(queryString);
+
   //insert query stuff here
   //...
+  try{
+    const client = await pool.connect();
+    const result = await client.query(`INSERT INTO toki_table VALUES(${data.id}, '${data.name}', ${data.weight}, ${data.height}, ${data.flying}, ${data.fight}, ${data.fire}, ${data.water}, ${data.grass}, ${data.electric}, ${data.ice}, ${data.total}, '${data.trainer}')`);
+    const results = { 'results': (result) ? result : null};
+    console.log(results);
+    client.release();
 
+  } catch (err){
+    console.error(err);
+    // res.status(400).send(JSON.stringify({status: err}));
+  }
 
+  
+  
   res.status(200).send(JSON.stringify({status: "success"}));
 });
 
