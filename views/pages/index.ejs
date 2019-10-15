@@ -28,7 +28,7 @@
     </thead>
     <tbody>
       <% results.forEach( r => {%>
-        <tr id="<%= r.id + r.name + r.trainer%>"> <!--unique id to use when deleting rows-->
+        <tr id="<%= r.id + '-' + r.name + '-' + r.trainer%>"> <!--unique id to use when deleting rows-->
           <td><button class="delete-button btn btn-danger btn-sm">x</button></td>
           <th scope="row"><%= r.id %></th>
           <td><%= r.name %></td>

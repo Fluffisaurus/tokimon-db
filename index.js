@@ -14,17 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-// app.get('/', (req, res) => {
-//   var tableQuery = 'SELECT * FROM toki_table';
-//   pool.query(tableQuery, (error, result) => {
-//     if(error)
-//       res.end(error);
-//     var results = { 'results': (result) ? result.rows : null};
-//     console.log(results);
-//     res.render('pages/index', results);
-//   });
 
-// });
+//handles on load
 app.get('/', async (req, res) => {
     try {
       const client = await pool.connect()
@@ -39,8 +30,9 @@ app.get('/', async (req, res) => {
     }
   });
 
+//handle insert
 app.post('/', async (req, res) => {
-  console.log("processing...");
+  console.log("processing insert...");
   var data = req.body
   // console.log(data);
 
@@ -60,10 +52,30 @@ app.post('/', async (req, res) => {
     console.error(err);
     // res.status(400).send(JSON.stringify({status: err}));
   }
+  console.log("insert successful");
+  res.status(200).send(JSON.stringify({status: "insert successful"}));
+});
 
-  
-  
-  res.status(200).send(JSON.stringify({status: "success"}));
+
+//handle delete
+app.post('/delete', async (req, res) =>{
+  console.log("processing delete...");
+  var data = req.body
+  console.log(data);
+
+  try{
+    const client = await pool.connect();
+    const result = await client.query(`DELETE FROM toki_table WHERE id=${data.id} AND name='${data.name}' AND trainer='${data.trainer}'`);
+    const results = { 'results': (result) ? result : null};
+    console.log(results);
+    client.release();
+
+  } catch (err){
+    console.error(err);
+    // res.status(400).send(JSON.stringify({status: err}));
+  }
+  console.log("delete successful");
+  res.status(200).send(JSON.stringify({status: "delete successful"}));
 });
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

@@ -140,13 +140,37 @@ console.log(delButtons[0].parentNode.parentNode);
 $( ()=>{
   $('.delete-button').click((event) =>{ //set event listeners for all delete buttons
     event.preventDefault();
-    // console.log(event.target);
-    // console.log(event.target.parentNode.parentNode);
-    event.target.parentNode.parentNode.remove();
+    let rowToRemove = event.target.parentNode.parentNode;
+    console.log(rowToRemove);
 
+    //id is made up of id + name + trainer separated by -
+    //split to get data to specify to db what to delete
+    let rowKeyData = rowToRemove.id.split('-');
+    console.log("id of row to delete: ", rowToRemove.id)
+    console.log("row data: ", rowKeyData)
+
+    var dataToDelete = {
+      id: rowKeyData[0],
+      name: rowKeyData[1],
+      trainer: rowKeyData[2]
+    }
     //send delete query to database to delete that entry
     //post request here...
-
-    
+    $.ajax({
+      url: "/delete",
+      type: "POST",
+      dataType: "JSON",
+      data: JSON.stringify(dataToDelete),
+      contentType: "application/json",
+      cache: false,
+      timeout: 5000,
+      success: (data) => {
+        console.log(data.status);
+        rowToRemove.remove();
+      },
+      error: (data) => {
+        console.log("error occurred during delete: " + data.status);
+      }
+    })
   });
 });
