@@ -1,7 +1,7 @@
 var tokiInfo = [];
 var tokiAbilities = [];
 var insertButton;
-var currID = Math.random() * (999 - 4) + 4;
+var currID = Math.round(Math.random() * (999 - 4) + 4);
 
 function initReferences(){
   tokiInfo.push(document.getElementById('insert-id'));
@@ -138,7 +138,7 @@ $( () =>{
 $( ()=>{
   $('.delete-button').click((event) =>{ //set event listeners for all delete buttons
     event.preventDefault();
-    let rowToRemove = event.target.parentNode.parentNode;
+    let rowToRemove = event.target.parentNode.parentNode; //button -> td -> tr
     console.log(rowToRemove);
 
     //id is made up of id + name + trainer separated by -

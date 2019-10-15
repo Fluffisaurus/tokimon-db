@@ -37,14 +37,14 @@ app.post('/', async (req, res) => {
   var data = req.body
   // console.log(data);
 
-  // var queryString = `INSERT INTO toki_table VALUES(${data.id}, ${data.name}, ${data.weight}, ${data.height}, ${data.flying}, ${data.fight}, ${data.fire}, ${data.water}, ${data.grass}, ${data.electric}, ${data.ice}, ${data.total}, ${data.trainer})`
-  // console.log(queryString);
+  var queryString = `INSERT INTO toki_table VALUES(${data.id}, '${data.name}', ${data.weight}, ${data.height}, ${data.flying}, ${data.fight}, ${data.fire}, ${data.water}, ${data.grass}, ${data.electric}, ${data.ice}, ${data.total}, '${data.trainer}')`
+  console.log(queryString);
 
   //insert query stuff here
   //...
   try{
     const client = await pool.connect();
-    const result = await client.query(`INSERT INTO toki_table VALUES(${data.id}, '${data.name}', ${data.weight}, ${data.height}, ${data.flying}, ${data.fight}, ${data.fire}, ${data.water}, ${data.grass}, ${data.electric}, ${data.ice}, ${data.total}, '${data.trainer}')`);
+    const result = await client.query(queryString);
     const results = { 'results': (result) ? result : null};
     console.log(results);
     client.release();
@@ -64,9 +64,12 @@ app.post('/delete', async (req, res) =>{
   var data = req.body
   console.log(data);
 
+  var queryString = `DELETE FROM toki_table WHERE id=${data.id} AND name='${data.name}' AND trainer='${data.trainer}'`;
+  console.log(queryString);
+
   try{
     const client = await pool.connect();
-    const result = await client.query(`DELETE FROM toki_table WHERE id=${data.id} AND name='${data.name}' AND trainer='${data.trainer}'`);
+    const result = await client.query(queryString);
     const results = { 'results': (result) ? result : null};
     console.log(results);
     client.release();
@@ -85,10 +88,13 @@ app.get('/details/:id', async (req, res) => {
   let keyID = req.params.id; //gives id portion in url
   keyData = keyID.split('-'); 
 
+  var queryString = `SELECT * FROM toki_table WHERE id=${keyData[0]} AND name='${keyData[1]}' AND trainer='${keyData[2]}'`;
+  console.log(queryString);
+
   //query to get info based on url in database
   try {
     const client = await pool.connect()
-    const result = await client.query(`SELECT * FROM toki_table WHERE id=${keyData[0]} AND name='${keyData[1]}' AND trainer='${keyData[2]}'`);
+    const result = await client.query(queryString);
     const results = { 'results': (result) ? result.rows : null};
     // console.log(results);
     res.render('pages/toki-details', results);
