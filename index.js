@@ -10,6 +10,8 @@ const pool = new Pool({
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 // app.get('/', (req, res) => {
@@ -28,7 +30,7 @@ app.get('/', async (req, res) => {
       const client = await pool.connect()
       const result = await client.query('SELECT * FROM toki_table');
       const results = { 'results': (result) ? result.rows : null};
-      console.log(results);
+      // console.log(results);
       res.render('pages/index', results );
       client.release();
     } catch (err) {
@@ -36,5 +38,16 @@ app.get('/', async (req, res) => {
       res.send("Error " + err);
     }
   });
+
+app.post('/', (req, res) => {
+  console.log("processing...");
+  console.log(req.body);
+  
+  //insert query stuff here
+  //...
+
+
+  res.status(200).send(JSON.stringify({status: "success"}));
+});
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

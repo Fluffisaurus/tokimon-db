@@ -15,7 +15,7 @@
       <th scope="col">name</th>
       <th scope="col">weight</th>
       <th scope="col">height</th>
-      <th scope="col">fly</th>
+      <th scope="col">flying</th>
       <th scope="col">fight</th>
       <th scope="col">fire</th>
       <th scope="col">water</th>
@@ -32,7 +32,7 @@
           <td><%= r.name %></td>
           <td><%= r.weight %></td>
           <td><%= r.height %></td>
-          <td><%= r.fly %></td>
+          <td><%= r.flying %></td>
           <td><%= r.fight %></td>
           <td><%= r.fire %></td>
           <td><%= r.water %></td>
@@ -48,28 +48,28 @@
 </div> <!--container end-->
 
 <div class="container">
-
-  <form class="form-inline">
+  <form class="form-inline" action="/" method="POST">
     <div class="form-group">
-      <input type="number" class="form-control" placeholder="id" disabled="true" aria-label="Row id for new data to insert" aria-describedby="button-addon4">
-      <input type="text" class="form-control" placeholder="tokimon name" aria-label="Tokimon name for new data to insert" aria-describedby="button-addon4">
-      <input type="text" class="form-control" placeholder="trainer name" aria-label="Trainer name for new data to insert" aria-describedby="button-addon4">  
+      <input type="number" class="form-control" name="id" id="insert-id" placeholder="id" disabled="true" aria-label="Row id for new data to insert" aria-describedby="button-addon4">
+      <input type="text" class="form-control" name="name" id="insert-name" placeholder="tokimon name" aria-label="Tokimon name for new data to insert" aria-describedby="button-addon4">
+      <input type="text" class="form-control" id="insert-trainer" placeholder="trainer name" aria-label="Trainer name for new data to insert" aria-describedby="button-addon4">  
+      <input type="number" class="form-control" name="weight" id="insert-weight" placeholder="weight" min="0" max="999" aria-label="Tokimon's weight for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="height" id="insert-height" placeholder="height" min="0" max="999" aria-label="Tokimon's height for new data to insert" aria-describedby="button-addon4">
     </div>
 
     <div class="form-group">
-      <input type="number" class="form-control" placeholder="weight" min="0" max="999" aria-label="Tokimon's weight for new data to insert" aria-describedby="button-addon4">
-      <input type="number" class="form-control" placeholder="height" min="0" max="999" aria-label="Tokimon's height for new data to insert" aria-describedby="button-addon4">
-      <input type="number" class="form-control" placeholder="fly" min="0" max="100" aria-label="Tokimon's fly stat for new data to insert" aria-describedby="button-addon4">
-      <input type="number" class="form-control" placeholder="fight" min="0" max="100" aria-label="Tokimon's fight stat for new data to insert" aria-describedby="button-addon4">
-      <input type="number" class="form-control" placeholder="fire"min="0" max="100" aria-label="Tokimon's fire stat for new data to insert" aria-describedby="button-addon4">
-      <input type="number" class="form-control" placeholder="water" min="0" max="100" aria-label="Tokimon's water stat for new data to insert" aria-describedby="button-addon4">
-      <input type="number" class="form-control" placeholder="electric" min="0" max="100" aria-label="Tokimon's electric stat for new data to insert" aria-describedby="button-addon4">
-      <input type="number" class="form-control" placeholder="ice" min="0" max="100" aria-label="Tokimon's ice stat for new data to insert" aria-describedby="button-addon4">
-      <input type="number" class="form-control" placeholder="total" disabled="true" aria-label="Tokimon's total stats for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="flying" id="insert-flying" placeholder="flying" min="0" max="99" aria-label="Tokimon's flying stat for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="fight" id="insert-fight" placeholder="fight" min="0" max="99" aria-label="Tokimon's fight stat for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="fire" id="insert-fire" placeholder="fire" min="0" max="99" aria-label="Tokimon's fire stat for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="water" id="insert-water" placeholder="water" min="0" max="99" aria-label="Tokimon's water stat for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="grass" id="insert-grass" placeholder="grass" min="0" max="99" aria-label="Tokimon's grass stat for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="electric" id="insert-electric" placeholder="electric" min="0" max="99" aria-label="Tokimon's electric stat for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="ice" id="insert-ice" placeholder="ice" min="0" max="99" aria-label="Tokimon's ice stat for new data to insert" aria-describedby="button-addon4">
+      <input type="number" class="form-control" name="total" id="insert-total" placeholder="total" disabled="true" aria-label="Tokimon's total stats for new data to insert" aria-describedby="button-addon4">
     </div>
 
     <div class="input-group-append" id="button-addon4">
-      <button type="button" class="btn btn-outline-secondary">insert row</button>
+      <button type="submit" class="btn btn-outline-secondary" id="insert-button" value="SUBMIT">insert row</button>
     </div>
   </form>
 
