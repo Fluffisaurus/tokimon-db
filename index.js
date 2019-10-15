@@ -17,18 +17,19 @@ app.set('view engine', 'ejs');
 
 //handles on load
 app.get('/', async (req, res) => {
-    try {
-      const client = await pool.connect()
-      const result = await client.query('SELECT * FROM toki_table');
-      const results = { 'results': (result) ? result.rows : null};
-      // console.log(results);
-      res.render('pages/index', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  });
+  //query function format from heroku getting started https://devcenter.heroku.com/articles/getting-started-with-nodejs#provision-a-database
+  try {
+    const client = await pool.connect()
+    const result = await client.query('SELECT * FROM toki_table');
+    const results = { 'results': (result) ? result.rows : null};
+    // console.log(results);
+    res.render('pages/index', results );
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+});
 
 //handle insert
 app.post('/', async (req, res) => {
@@ -76,6 +77,27 @@ app.post('/delete', async (req, res) =>{
   }
   console.log("delete successful");
   res.status(200).send(JSON.stringify({status: "delete successful"}));
+});
+
+
+//handle inspect pages
+app.get('/details/:id', async (req, res) => {
+  let keyID = req.params.id; //gives id portion in url
+  keyData = keyID.split('-'); 
+
+  //query to get info based on url in database
+  try {
+    const client = await pool.connect()
+    const result = await client.query(`SELECT * FROM toki_table WHERE id=${keyData[0]} AND name='${keyData[1]}' AND trainer='${keyData[2]}'`);
+    const results = { 'results': (result) ? result.rows : null};
+    // console.log(results);
+    res.render('pages/toki-details', results);
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+  
 });
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

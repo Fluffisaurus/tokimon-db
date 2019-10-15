@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+  <% include ../partials/nav.ejs %>
+
+<div class="container">
+  <ul>
+    <% results.forEach((r) => { %> 
+      <li><%= r.id %></li>
+      <li><%= r.name %></li>
+      <li><%= r.weight %></li>
+      <li><%= r.height %></li>
+      <li><%= r.flying %></li>
+      <li><%= r.fight %></li>
+      <li><%= r.fire %></li>
+      <li><%= r.water %></li>
+      <li><%= r.grass %></li>
+      <li><%= r.electric %></li>
+      <li><%= r.ice %></li>
+      <li><%= r.total %></li>
+      <li><%= r.trainer %></li>
+    <% }); %>    
+  </ul>
+</div>
+
+
+</body>
+</html>

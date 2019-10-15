@@ -90,7 +90,7 @@ console.log(tokiInfo);
 console.log(tokiAbilities);
 
 
-// send request to server on click 
+// HANDLE INSERT CLICKS: send request to server on click 
 $( () =>{
   $("#insert-button").click( (e)=>{
     e.preventDefault();
@@ -134,9 +134,7 @@ $( () =>{
 });
 
 
-var delButtons = document.getElementsByClassName('delete-button');
-console.log(delButtons[0].parentNode.parentNode);
-
+// HANDLE ALL DELETE CLICKS
 $( ()=>{
   $('.delete-button').click((event) =>{ //set event listeners for all delete buttons
     event.preventDefault();
