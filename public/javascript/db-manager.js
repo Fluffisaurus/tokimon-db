@@ -1,7 +1,7 @@
 var tokiInfo = [];
 var tokiAbilities = [];
 var insertButton;
-var currID = 4;
+var currID = Math.random() * (999 - 4) + 4;
 
 function initReferences(){
   tokiInfo.push(document.getElementById('insert-id'));
@@ -130,5 +130,23 @@ $( () =>{
         console.log("error occurred during insert: " + data.status);
       }
     })
+  });
+});
+
+
+var delButtons = document.getElementsByClassName('delete-button');
+console.log(delButtons[0].parentNode.parentNode);
+
+$( ()=>{
+  $('.delete-button').click((event) =>{ //set event listeners for all delete buttons
+    event.preventDefault();
+    // console.log(event.target);
+    // console.log(event.target.parentNode.parentNode);
+    event.target.parentNode.parentNode.remove();
+
+    //send delete query to database to delete that entry
+    //post request here...
+
+    
   });
 });
