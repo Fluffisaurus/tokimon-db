@@ -1,39 +1,10 @@
-# node-js-getting-started
+# Tokimon Database
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+This application is hosted on [Heroku](https://www.heroku.com) and utilizes [Node.js](http://nodejs.org/) and [Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql).
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
 
-## Running Locally
-
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
-
-```sh
-$ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Documentation
-
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+## Features
+Dynamically add and delete from the database server while staying on the same page!
+Tokimon detailed view gives cards of information along with [randomly generated picture](https://picsum.photos) of the Tokimon's natural biome.
+Update page has before-after layout. 
+Updated to use [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/) for UI and design.
