@@ -1,3 +1,11 @@
+html{
+  font-size: 12px;
+}
+
+.glyphicon.glyphicon-arrow-right {
+  font-size: 50px;
+}
+
 .form-control-inline {
   min-width: 0;
   width: auto;

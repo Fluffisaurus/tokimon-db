@@ -124,7 +124,29 @@ app.get('/update/:id', async (req, res) =>{
     console.error(err);
     res.send("Error " + err);
   }
-
 });
+
+app.post('/update/values', async (req, res) => {
+  console.log("processing update...");
+  var data = req.body
+  // console.log(data);
+
+  var queryString = `UPDATE toki_table SET id=${data.id}, name='${data.name}', weight=${data.weight}, height=${data.height}, flying=${data.flying}, fight=${data.fight}, fire=${data.fire}, water=${data.water}, grass=${data.grass}, electric=${data.electric}, ice=${data.ice}, total=${data.total}, trainer='${data.trainer}' WHERE id=${data.id}`
+  console.log(queryString);
+
+  //insert query stuff here
+  //...
+  try{
+    const client = await pool.connect();
+    const result = await client.query(queryString);
+    const results = { 'results': (result) ? result : null};
+    console.log(results);
+    client.release();
+    console.log("update successful");
+    res.send({redirect: '/'}); //help with redirecting after post https://stackoverflow.com/a/11574444
+  } catch (err){
+    console.error(err);
+  }
+})
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

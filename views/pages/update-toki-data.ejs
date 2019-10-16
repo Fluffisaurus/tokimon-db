@@ -1,32 +1,156 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../partials/header.ejs %>
+  <% include ../partials/header-update.ejs %>
 </head>
 
 <body>
 
-  <% include ../partials/nav.ejs %>
+  <% include ../partials/nav-update.ejs %>
 
 <div class="container">
-  <ul>
-    <% results.forEach((r) => { %> 
-      <li><%= r.id %></li>
-      <li><%= r.name %></li>
-      <li><%= r.weight %></li>
-      <li><%= r.height %></li>
-      <li><%= r.flying %></li>
-      <li><%= r.fight %></li>
-      <li><%= r.fire %></li>
-      <li><%= r.water %></li>
-      <li><%= r.grass %></li>
-      <li><%= r.electric %></li>
-      <li><%= r.ice %></li>
-      <li><%= r.total %></li>
-      <li><%= r.trainer %></li>
-    <% }); %>    
-  </ul>
+  <div class="row align-items-center">
+    <div class="col-5">
+      <div class="card border-secondary mb-3">
+        <div class="card-header">current data</div>
+        <div class="card-body text-secondary">
+          <h2 class="card-title">Current Data</h5>
+          <p class="card-text">Each value here will be updated to the new value in New Data.</p>
+          <table class="table">
+            <tbody>
+              <% results.forEach( r => {%>
+              <tr>
+                <th class="align-middle" scope="row">id</th>
+                <td><input id="old-id" value="<%= r.id %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">name</th>
+                <td><input id="old-name" value="<%= r.name %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">trainer</th>
+                <td><input id="old-trainer" value="<%= r.trainer %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">weight</th>
+                <td><input id="old-weight" value="<%= r.weight %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">height</th>
+                <td><input id="old-height" value="<%= r.height %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">flying</th>
+                <td><input id="old-flying" value="<%= r.flying %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">fight</th>
+                <td><input id="old-fight" value="<%= r.fight %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">fire</th>
+                <td><input id="old-fire" value="<%= r.fire %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">water</th>
+                <td><input id="old-water" value="<%= r.water %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">grass</th>
+                <td><input id="old-grass" value="<%= r.grass %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">electric</th>
+                <td><input id="old-electric" value="<%= r.electric %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">ice</th>
+                <td><input id="old-ice" value="<%= r.ice %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">total</th>
+                <td><input id="old-total" value="<%= r.total %>" class="form-control text-secondary" disabled aria-disabled="true"></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 text-center">
+      <span class="glyphicon glyphicon-arrow-right"></span>
+    </div>
+    <div class="col-5">
+      <div class="card border-warning mb-3">
+        <div class="card-header">new data</div>
+        <div class="card-body">
+          <h2 class="card-title">New Data</h5>
+          <p class="card-text">If values are empty, old values will be used</p>
+          <table class="table text-warning">
+            <tbody>
+              <% results.forEach( r => {%>
+              <tr>
+                <th class="align-middle" scope="row">id</th>
+                <td><input class="form-control" type="number" name="id" id="update-id" value="<%= r.id %>" disabled aria-disabled="true"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">name</th>
+                <td><input class="form-control" type="text" name="name" id="update-name" placeholder="tokimon name" ></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">trainer</th>
+                <td><input class="form-control" type="text" name="trainer" id="update-trainer" placeholder="trainer name"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">weight</th>
+                <td><input class="form-control" type="number" name="weight" id="update-weight" placeholder="new value" min="0" max="999"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">height</th>
+                <td><input class="form-control" type="number" name="height" id="update-height" placeholder="new value" min="0" max="999"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">flying</th>
+                <td><input class="form-control" type="number" name="flying" id="update-flying" placeholder="new value" min="0" max="99"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">fight</th>
+                <td><input class="form-control" type="number" name="fight" id="update-fight" placeholder="new value" min="0" max="99"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">fire</th>
+                <td><input class="form-control" type="number" name="fire" id="update-fire" placeholder="new value" min="0" max="99"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">water</th>
+                <td><input class="form-control" type="number" name="water" id="update-water" placeholder="new value" min="0" max="99"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">grass</th>
+                <td><input class="form-control" type="number" name="grass" id="update-grass" placeholder="new value" min="0" max="99"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">electric</th>
+                <td><input class="form-control" type="number" name="electric" id="update-electric" placeholder="new value" min="0" max="99"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">ice</th>
+                <td><input class="form-control" type="number" name="ice" id="update-ice" placeholder="new value" min="0" max="99"></td>
+              </tr>
+              <tr>
+                <th class="align-middle" scope="row">total</th>
+                <td><input class="form-control" name="total" id="update-total" placeholder="sum of all abilities" disabled="true" ></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
 
 </body>

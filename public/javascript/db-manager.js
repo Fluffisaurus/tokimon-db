@@ -172,12 +172,3 @@ $( ()=>{
     })
   });
 });
-
-
-// // HANDLE UPDATE CLICKS
-// $( () => {
-//   $('.update-button').click( (event) => {
-//     event.preventDefault();
-//     let rowToUpdate = event.target.parentNode.parentNode;
-//   });
-// });
