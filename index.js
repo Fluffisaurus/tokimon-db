@@ -86,7 +86,7 @@ app.post('/delete', async (req, res) =>{
 //handle inspect pages
 app.get('/details/:id', async (req, res) => {
   let keyID = req.params.id; //gives id portion in url
-  keyData = keyID.split('-'); 
+  var keyData = keyID.split('-'); 
 
   var queryString = `SELECT * FROM toki_table WHERE id=${keyData[0]} AND name='${keyData[1]}' AND trainer='${keyData[2]}'`;
   console.log(queryString);
@@ -104,6 +104,27 @@ app.get('/details/:id', async (req, res) => {
     res.send("Error " + err);
   }
   
+});
+
+app.get('/update/:id', async (req, res) =>{
+  let updateID = req.params.id;
+  var updateData = updateID.split('-');
+
+  var queryString = `SELECT * FROM toki_table WHERE id=${updateData[0]} AND name='${updateData[1]}' AND trainer='${updateData[2]}'`;
+  console.log(queryString);
+
+  try {
+    const client = await pool.connect()
+    const result = await client.query(queryString);
+    const results = { 'results': (result) ? result.rows : null};
+    // console.log(results);
+    res.render('pages/update-toki-data', results);
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+
 });
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

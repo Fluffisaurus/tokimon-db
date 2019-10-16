@@ -13,6 +13,7 @@
   <table class="table table-hover table-striped">
     <thead class="thead-dark">
       <th scope="col"></th>
+      <th scope="col"></th>
       <th scope="col">id</th>
       <th scope="col">name</th>
       <th scope="col">weight</th>
@@ -31,6 +32,7 @@
       <% results.forEach( r => {%>
         <tr id="<%= r.id + '-' + r.name + '-' + r.trainer%>"> <!--unique id to use when deleting rows-->
           <td><button class="delete-button btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" style="pointer-events: none;"></span></button></td>
+          <td><a href="/update/<%= r.id + '-' + r.name + '-' + r.trainer%>" class="update-button btn btn-warning btn-xs"><span class="glyphicon glyphicon-wrench" style="pointer-events: none;"></span></a></td>
           <th scope="row"><%= r.id %></th>
           <td><a href="/details/<%= r.id + '-' + r.name + '-' + r.trainer%>" class="link-to-detail stretched-link text-decoration-none"><%= r.name %></a></td>
           <td><%= r.weight %></td>
