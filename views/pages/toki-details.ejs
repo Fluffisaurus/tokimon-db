@@ -8,26 +8,80 @@
 
   <% include ../partials/nav.ejs %>
 
-<div class="container">
-  <ul>
-    <% results.forEach((r) => { %> 
-      <li><%= r.id %></li>
-      <li><%= r.name %></li>
-      <li><%= r.weight %></li>
-      <li><%= r.height %></li>
-      <li><%= r.flying %></li>
-      <li><%= r.fight %></li>
-      <li><%= r.fire %></li>
-      <li><%= r.water %></li>
-      <li><%= r.grass %></li>
-      <li><%= r.electric %></li>
-      <li><%= r.ice %></li>
-      <li><%= r.total %></li>
-      <li><%= r.trainer %></li>
-    <% }); %>    
-  </ul>
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col" style="flex-grow: 0;">
+        <div class="card border-secondary mb-3" style="width: 18rem;">
+          <% results.forEach( r => {%>
+          <div class="card-header">Tokimon ID: <%= r.id %></div>
+          <div class="card-body">
+            <h4 class="card-subtitle text-secondary"><%= r.trainer %>'s</h4>
+            <h1 class="card-title"><%= r.name %></h1>
+            <p>weight: <%= r.weight %>, height: <%= r.height %></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus dui, efficitur et consectetur sed,
+              dignissim ac felis. Suspendisse et nunc quam. Fusce lobortis nibh id mauris viverra venenatis. Donec
+              aliquam
+              risus eu arcu ultrices congue.</p>
+            <table class="table">
+              <thead>
+                <th>Combat Abilities</th>
+                <th>Stats</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <th class="align-middle" scope="row">flying</th>
+                  <td class="text-center"><%= r.flying %></td>
+                </tr>
+                <tr>
+                  <th class="align-middle" scope="row">fight</th>
+                  <td class="text-center"><%= r.fight %></td>
+                </tr>
+                <tr>
+                  <th class="align-middle" scope="row">fire</th>
+                  <td class="text-center"><%= r.fire %></td>
+                </tr>
+                <tr>
+                  <th class="align-middle" scope="row">water</th>
+                  <td class="text-center"><%= r.water %></td>
+                </tr>
+                <tr>
+                  <th class="align-middle" scope="row">grass</th>
+                  <td class="text-center"><%= r.grass %></td>
+                </tr>
+                <tr>
+                  <th class="align-middle" scope="row">electric</th>
+                  <td class="text-center"><%= r.electric %></td>
+                </tr>
+                <tr>
+                  <th class="align-middle" scope="row">ice</th>
+                  <td class="text-center"><%= r.ice %></td>
+                </tr>
+                <tr>
+                  <th class="align-middle" scope="row">total</th>
+                  <td class="text-center"><%= r.total %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: fit-content">
+          <% results.forEach( r => {%>
+          <div class="card-header">habitat</div>
+          <div class="card-body">
+            <h1><%= r.name %>'s native biome</h1>
+            <img src="https://picsum.photos/500/500">
+          </div>
+          <% }); %>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
 </body>
+
 </html>
