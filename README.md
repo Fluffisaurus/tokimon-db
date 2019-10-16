@@ -1,7 +1,8 @@
 # Tokimon Database
 
-This application is hosted on [Heroku](https://www.heroku.com) and utilizes [Node.js](http://nodejs.org/) and [Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql).
+This application is hosted with [Heroku](https://www.heroku.com) and utilizes [Node.js](http://nodejs.org/) and [Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql).
 
+Check out the application [here](http://tokimon-db.herokuapp.com/)!
 
 ## Features
 Dynamically add and delete from the database server while staying on the same page!\
